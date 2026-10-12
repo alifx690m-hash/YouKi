@@ -101,8 +101,22 @@ function renderFeed(){
  if(!videos.length){feed.innerHTML='<div class="empty">No published videos yet.<br>Publish a real short and it will appear here.</div>';return;}
  videos.forEach(v=>{
   const card=document.createElement('article');card.className='video-card';card.dataset.id=v.id;
-  const video=document.createElement('video');video.src=v.downloadURL;video.playsInline=true;video.preload='metadata';video.loop=true;video.muted=true;video.controls=false;video.setAttribute('aria-label',v.title||'Short video');
-  video.addEventListener('click',()=>{if(video.paused)video.play().catch(()=>{});else video.pause();});
+  const video=document.createElement('video');video.src=v.downloadURL;video.playsInline=true;video.preload='metadata';video.loop=true;video.muted=false;video.volume=1;video.controls=false;video.setAttribute('aria-label',v.title||'Short video');
+  video.addEventListener('click',async()=>{
+  if(video.muted){
+    video.muted=false;
+    video.volume=1;
+    try{await video.play();}
+    catch(e){console.warn('Sound playback blocked:',e);}
+    return;
+  }
+  if(video.paused){
+    try{await video.play();}
+    catch(e){console.warn('Playback blocked:',e);}
+  }else{
+    video.pause();
+  }
+});
   video.onerror=()=>{if(!card.querySelector('.video-error')){const err=document.createElement('div');err.className='notice error video-error';err.textContent='This video could not be loaded.';card.append(err);}};
   const overlay=document.createElement('div');overlay.className='video-overlay';
   const info=document.createElement('div');info.className='video-info';
@@ -122,7 +136,15 @@ function renderFeed(){
   const vid=entry.target.querySelector('video');if(!vid)return;
   if(entry.isIntersecting&&entry.intersectionRatio>=.65){
    document.querySelectorAll('.video-card video').forEach(other=>{if(other!==vid)other.pause();});
-   vid.play().catch(()=>{});recordView(entry.target.dataset.id);
+   vid.muted=false;
+  vid.volume=1;
+  vid.play().catch(async()=>{
+    // If sound autoplay is blocked, try muted playback.
+    vid.muted=true;
+    try{await vid.play();}
+    catch(e){console.warn('Autoplay blocked:',e);}
+  });
+  recordView(entry.target.dataset.id);
    const index=videos.findIndex(v=>v.id===entry.target.dataset.id);
    if(index>=videos.length-3&&lastDoc)loadFeed(false);
   }else vid.pause();
