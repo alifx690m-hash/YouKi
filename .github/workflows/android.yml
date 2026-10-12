@@ -19,47 +19,38 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v5
 
-      - name: Set up Java 21
+      - name: Set up Java
         uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '21'
 
-      - name: Set up Android SDK
+      - name: Install Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: ''
 
-      - name: Accept Android SDK licenses
-        run: yes | sdkmanager --licenses
-
-      - name: Install required Android SDK
+      - name: Install required SDK packages
         run: |
-          sdkmanager \
-            "platform-tools" \
-            "platforms;android-36" \
-            "build-tools;35.0.0"
-
-      - name: Verify Android SDK
-        run: |
-          sdkmanager --list_installed
-          adb version
+          yes | sdkmanager --licenses
+          sdkmanager "platform-tools" "platforms;android-36" "build-tools;35.0.0"
 
       - name: Set up Node.js
         uses: actions/setup-node@v5
         with:
           node-version: '22'
 
-      - name: Verify project files
+      - name: Check project files
         run: |
           test -f package.json
           test -f package-lock.json
-          test -f capacitor.config.json
           test -f android/gradlew
           test -f www/index.html
 
-      - name: Install project dependencies
+      - name: Install dependencies
         run: npm ci
 
-      - name: Sync Capacitor Android
+      - name: Sync Capacitor
         run: npx cap sync android
 
       - name: Build debug APK
@@ -68,7 +59,7 @@ jobs:
           chmod +x gradlew
           ./gradlew --no-daemon assembleDebug
 
-      - name: Upload APK artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: YouKi-Shorts-APK
