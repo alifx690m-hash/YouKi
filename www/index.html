@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08080b">
+<title>YouKi Shorts</title>
+<style>
+:root{color-scheme:dark;--bg:#08080b;--panel:#191922;--text:#f7f7fb;--muted:#b4b4c2;--accent:#b39aff;--line:#353541;--danger:#ff8796}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
+button,input,textarea{font:inherit}button{border:0;border-radius:12px;padding:11px 14px;background:var(--accent);color:#171222;font-weight:750;cursor:pointer;min-height:42px}button:disabled{opacity:.5}.secondary{background:#30303b;color:#fff}.danger{background:#6b2934;color:#fff}.hidden{display:none!important}.muted{color:var(--muted)}.small{font-size:12px}.app{max-width:760px;margin:auto;min-height:100dvh;padding-bottom:76px}.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#101014ed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.brand{font-size:22px;font-weight:900;letter-spacing:-.7px}.brand span{color:var(--accent)}.page{padding:16px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0}label{display:block;font-weight:650;margin:12px 0 6px}input,textarea{width:100%;padding:12px;border:1px solid #484855;border-radius:11px;background:#121218;color:var(--text);outline-color:var(--accent)}textarea{min-height:80px;resize:vertical}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.tabs{display:flex;gap:8px;padding:10px 0}.tabs button{flex:1}.notice{padding:10px 12px;border-radius:10px;background:#28283a;margin:10px 0;overflow-wrap:anywhere}.notice.error{background:#48232a;color:#ffdbe0}.notice.ok{background:#19392c;color:#d5ffe8}
+.feed{height:calc(100dvh - 130px);min-height:400px;overflow-y:auto;scroll-snap-type:y mandatory;overscroll-behavior:contain}.video-card{height:calc(100dvh - 130px);min-height:400px;position:relative;scroll-snap-align:start;scroll-snap-stop:always;background:#000;margin-bottom:10px;overflow:hidden;border-radius:18px}.video-card video{width:100%;height:100%;object-fit:cover;background:#000;display:block}.video-overlay{position:absolute;inset:0;padding:20px 12px 18px;display:flex;align-items:flex-end;gap:12px;background:linear-gradient(to bottom,#0004,transparent 20%,transparent 52%,#000b);pointer-events:none}.video-info{flex:1;min-width:0;overflow-wrap:anywhere;text-shadow:0 1px 4px #000}.video-info h3{margin:0 0 5px;font-size:17px}.video-info p{margin:6px 0 0;white-space:pre-wrap}.actions{display:flex;flex-direction:column;gap:9px;align-items:center;flex:0 0 auto}.actions button{min-width:58px;max-width:86px;padding:8px 7px;background:#262631e8;color:#fff;border:1px solid #ffffff35;backdrop-filter:blur(8px);font-size:12px}.actions button.liked{color:#ff91ab}.empty{text-align:center;padding:44px 18px;color:var(--muted)}.video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.video-grid video{width:100%;aspect-ratio:9/16;object-fit:cover;background:#000;border-radius:12px}.video-grid article{min-width:0}.bottom{position:fixed;bottom:0;left:0;right:0;z-index:30;background:#14141bf5;border-top:1px solid var(--line);display:flex;justify-content:center;padding:6px env(safe-area-inset-right) calc(6px + env(safe-area-inset-bottom)) env(safe-area-inset-left)}.bottom-inner{display:flex;width:min(760px,100%);gap:5px}.bottom button{flex:1;background:transparent;color:var(--muted);padding:6px 4px;font-size:12px;min-height:46px}.bottom button.active{color:var(--accent);background:#272337}.bottom button span{display:block;font-size:19px}.progress{height:6px;background:#383844;border-radius:99px;overflow:hidden;margin:12px 0}.progress>div{height:100%;width:0;background:var(--accent)}.comment-list{max-height:260px;overflow:auto}.comment{padding:9px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.pill{border:1px solid #ffffff40;border-radius:99px;padding:4px 8px;color:#fff;font-size:11px;background:#2229}
+body.shorts-mode{overflow:hidden}body.shorts-mode .app{width:100%;max-width:none;min-height:100dvh;padding:0;margin:0}body.shorts-mode .top{display:none}body.shorts-mode #homePage{padding:0}body.shorts-mode #homePage>.row,body.shorts-mode #feedStatus,body.shorts-mode #loadMore{display:none!important}body.shorts-mode .feed{position:fixed;inset:0;z-index:1;width:100%;height:100dvh;min-height:0;margin:0;padding:0;overflow-x:hidden;overflow-y:auto;scroll-snap-type:y mandatory;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch}body.shorts-mode .video-card{width:100%;height:100dvh;min-height:100dvh;max-height:none;margin:0;padding:0;border:0;border-radius:0;scroll-snap-align:start;scroll-snap-stop:always}body.shorts-mode .video-card video{width:100%;height:100%;object-fit:cover;border-radius:0}body.shorts-mode .video-overlay{padding:22px 12px calc(82px + env(safe-area-inset-bottom));gap:10px}body.shorts-mode .actions{padding-bottom:8px;pointer-events:auto}body.shorts-mode .video-info{pointer-events:auto}body.shorts-mode .bottom{background:linear-gradient(transparent,#101014f2)}
+@media(min-width:700px){body.shorts-mode .video-card{width:100%;height:100dvh;min-height:100dvh;max-height:none}.video-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div class="brand">YouKi <span>Shorts</span></div><div id="accountStatus" class="small muted">Signed out</div></header>
+<section id="authPage" class="page"><div class="panel"><h2>Welcome to YouKi Shorts</h2><p class="muted">Sign in to watch, like, comment and publish short videos.</p><div class="tabs"><button id="loginTab" type="button">Log in</button><button id="registerTab" type="button" class="secondary">Create account</button></div><form id="authForm"><label for="authEmail">Email</label><input id="authEmail" type="email" autocomplete="email" required maxlength="254"><label for="authPassword">Password</label><input id="authPassword" type="password" autocomplete="current-password" minlength="6" required><div id="nameWrap" class="hidden"><label for="authName">Display name</label><input id="authName" maxlength="40" autocomplete="nickname"></div><p id="authMsg" class="muted small" role="status"></p><button id="authSubmit" type="submit" style="width:100%">Log in</button><button id="resetPassword" type="button" class="secondary" style="width:100%;margin-top:8px">Send password reset email</button></form></div><p class="muted small">YouKi Shorts is an independent video-sharing platform.</p></section>
+<section id="mainPage" class="hidden">
+<nav class="bottom"><div class="bottom-inner"><button data-page="home" class="active"><span>⌂</span>Home</button><button data-page="discover"><span>⌕</span>Discover</button><button data-page="upload"><span>＋</span>Upload</button><button data-page="profile"><span>◉</span>Profile</button></div></nav>
+<section id="homePage" class="page"><div class="row"><h2>For you</h2><button id="refreshFeed" class="secondary">Refresh</button></div><div id="feedStatus" class="notice muted">Loading videos…</div><div id="feed" class="feed"></div><button id="loadMore" class="secondary hidden" style="width:100%">Load more</button></section>
+<section id="discoverPage" class="page hidden"><h2>Discover</h2><form id="searchForm" class="row"><input id="searchInput" placeholder="Search titles or creator names" maxlength="80" aria-label="Search videos"><button type="submit">Search</button></form><p class="muted small">Searches videos already loaded on Home.</p><div id="searchStatus" class="muted"></div><div id="searchResults" class="video-grid"></div></section>
+<section id="uploadPage" class="page hidden"><h2>Publish a short</h2><div class="panel"><form id="uploadForm"><label for="videoFile">Video file (MP4, WebM or MOV)</label><input id="videoFile" type="file" accept="video/mp4,video/webm,video/quicktime,.mp4,.webm,.mov" required><p class="muted small">Maximum file size: 100 MB. Cloudinary usage and storage limits apply.</p><label for="videoTitle">Title</label><input id="videoTitle" maxlength="100" required placeholder="Give your video a title"><label for="videoDescription">Description (optional)</label><textarea id="videoDescription" maxlength="1000" placeholder="What is this short about?"></textarea><div id="uploadProgressWrap" class="hidden"><div class="row"><span id="uploadLabel" class="small">Uploading…</span><button type="button" id="cancelUpload" class="danger">Cancel</button></div><div class="progress"><div id="uploadProgress"></div></div></div><p id="uploadMsg" class="muted small" role="status"></p><button id="publishBtn" type="submit" style="width:100%">Upload and publish</button></form></div></section>
+<section id="profilePage" class="page hidden"><div class="row"><h2>Your profile</h2><button id="logoutBtn" class="secondary">Log out</button></div><div class="panel"><form id="profileForm"><label for="profileName">Display name</label><input id="profileName" maxlength="40" required><label for="profileBio">Bio</label><textarea id="profileBio" maxlength="200"></textarea><button type="submit">Save profile</button><p id="profileMsg" class="muted small"></p></form><p id="profileEmail" class="muted small"></p><p id="profileStats" class="muted small"></p></div><h3>Your published videos</h3><div id="myVideos" class="video-grid"></div></section>
+</section></div>
+<dialog id="commentsDialog" style="width:min(620px,94vw);max-height:85dvh;background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:18px"><div class="row"><h3>Comments</h3><button id="closeComments" class="secondary">Close</button></div><div id="commentsStatus" class="muted small"></div><div id="commentsList" class="comment-list"></div><form id="commentForm"><label for="commentText">Add a comment</label><textarea id="commentText" maxlength="500" required placeholder="Write a respectful comment"></textarea><button type="submit">Post comment</button><p id="commentMsg" class="muted small"></p></form></dialog>
+<script type="module">
+import {initializeApp,getApps} from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js';
+import {getAuth,onAuthStateChanged,setPersistence,browserLocalPersistence,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,sendPasswordResetEmail,updateProfile} from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js';
+import {getFirestore,collection,doc,getDoc,getDocs,setDoc,updateDoc,addDoc,deleteDoc,query,where,orderBy,limit,startAfter,serverTimestamp,runTransaction,onSnapshot,getCountFromServer} from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
+
+const firebaseConfig={
+ apiKey:'AIzaSyBmx9OY5_ddSyZvvxWEPbQXlQ8ajKQ_3XA',
+ authDomain:'youki-shorts.firebaseapp.com',
+ projectId:'youki-shorts',
+ storageBucket:'youki-shorts.firebasestorage.app',
+ messagingSenderId:'905489221315',
+ appId:'1:905489221315:web:8559a43be313ed52f04476',
+ measurementId:'G-J8N0WYBPZ6'
+};
+const CLOUDINARY_CLOUD_NAME='youki';
+const CLOUDINARY_UNSIGNED_PRESET='Youki-shorts';
+const MAX_BYTES=100*1024*1024;
+const $=id=>document.getElementById(id);
+const say=(id,msg,kind='')=>{const el=$(id);el.textContent=msg;el.className=kind?`notice ${kind}`:'muted small';};
+const friendly=e=>({'auth/email-already-in-use':'This email is already registered. Log in instead.','auth/invalid-email':'Enter a valid email address.','auth/invalid-credential':'Email or password is incorrect.','auth/weak-password':'Use a stronger password (at least 6 characters).','auth/too-many-requests':'Too many attempts. Wait and try again.','auth/network-request-failed':'Network error. Check your connection.','permission-denied':'Firebase denied this action. Check Firestore rules.','storage/unauthorized':'Upload denied. Check your upload setup.'}[e?.code]||e?.message||'Something went wrong.');
+const app=getApps().length?getApps()[0]:initializeApp(firebaseConfig);
+const auth=getAuth(app),db=getFirestore(app);
+await setPersistence(auth,browserLocalPersistence);
+let currentUser=null,registerMode=false,videos=[],lastDoc=null,feedBusy=false,uploadTask=null,currentCommentVideo=null,commentUnsub=null,feedObserver=null;
+const pages=['home','discover','upload','profile'];
+function showPage(name){
+ document.body.classList.toggle('shorts-mode',name==='home');
+ pages.forEach(p=>$(p+'Page').classList.toggle('hidden',p!==name));
+ document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===name));
+ if(name==='profile')loadProfile();
+ if(name==='home')loadFeed(true);
+}
+function authView(user){
+ currentUser=user;
+ $('authPage').classList.toggle('hidden',!!user);
+ $('mainPage').classList.toggle('hidden',!user);
+ $('accountStatus').textContent=user?(user.displayName||user.email||'Signed in'):'Signed out';
+ if(user)showPage('home');
+ else{document.body.classList.remove('shorts-mode');videos=[];$('feed').replaceChildren();}
+}
+$('loginTab').onclick=()=>setAuthMode(false);$('registerTab').onclick=()=>setAuthMode(true);
+function setAuthMode(mode){registerMode=mode;$('nameWrap').classList.toggle('hidden',!mode);$('loginTab').classList.toggle('secondary',mode);$('registerTab').classList.toggle('secondary',!mode);$('authSubmit').textContent=mode?'Create account':'Log in';$('authPassword').autocomplete=mode?'new-password':'current-password';say('authMsg','');}
+$('authForm').addEventListener('submit',async e=>{
+ e.preventDefault();$('authSubmit').disabled=true;say('authMsg','Please wait…');
+ try{const email=$('authEmail').value.trim(),password=$('authPassword').value;
+  if(registerMode){const name=$('authName').value.trim();if(!name)throw new Error('Enter a display name.');const cred=await createUserWithEmailAndPassword(auth,email,password);await updateProfile(cred.user,{displayName:name});await setDoc(doc(db,'users',cred.user.uid),{uid:cred.user.uid,displayName:name,bio:'',photoURL:'',createdAt:serverTimestamp(),updatedAt:serverTimestamp()});}
+  else await signInWithEmailAndPassword(auth,email,password);
+ }catch(err){say('authMsg',friendly(err),'error');}finally{$('authSubmit').disabled=false;}
+});
+$('resetPassword').onclick=async()=>{const email=$('authEmail').value.trim();if(!email){say('authMsg','Enter your email first.');return;}try{await sendPasswordResetEmail(auth,email);say('authMsg','If the account exists, a reset email has been sent.','ok');}catch(e){say('authMsg',friendly(e),'error');}};
+$('logoutBtn').onclick=()=>signOut(auth).catch(e=>say('profileMsg',friendly(e),'error'));
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+
+async function loadFeed(reset=false){
+ if(feedBusy)return;feedBusy=true;$('feedStatus').textContent='Loading published videos…';
+ try{
+  let q=query(collection(db,'videos'),where('published','==',true),orderBy('createdAt','desc'),limit(8));
+  if(!reset&&lastDoc)q=query(collection(db,'videos'),where('published','==',true),orderBy('createdAt','desc'),startAfter(lastDoc),limit(8));
+  const snap=await getDocs(q);
+  if(reset){videos=[];$('feed').replaceChildren();}
+  snap.forEach(d=>{if(!videos.some(v=>v.id===d.id))videos.push({id:d.id,...d.data()});});
+  if(snap.docs.length)lastDoc=snap.docs[snap.docs.length-1];
+  $('feedStatus').textContent=videos.length?'':'No published videos yet. Be the first to publish.';
+  $('loadMore').classList.toggle('hidden',snap.size<8);
+  renderFeed();
+ }catch(e){$('feedStatus').textContent='Could not load videos: '+friendly(e);$('feedStatus').className='notice error';}
+ finally{feedBusy=false;}
+}
+$('refreshFeed').onclick=()=>{lastDoc=null;loadFeed(true);};
+$('loadMore').onclick=()=>loadFeed(false);
+function renderFeed(){
+ const feed=$('feed');feed.replaceChildren();
+ if(!videos.length){feed.innerHTML='<div class="empty">No published videos yet.<br>Publish a real short and it will appear here.</div>';return;}
+ videos.forEach(v=>{
+  const card=document.createElement('article');card.className='video-card';card.dataset.id=v.id;
+  const video=document.createElement('video');video.src=v.downloadURL;video.playsInline=true;video.preload='metadata';video.loop=true;video.muted=true;video.controls=false;video.setAttribute('aria-label',v.title||'Short video');
+  video.addEventListener('click',()=>{if(video.paused)video.play().catch(()=>{});else video.pause();});
+  video.onerror=()=>{if(!card.querySelector('.video-error')){const err=document.createElement('div');err.className='notice error video-error';err.textContent='This video could not be loaded.';card.append(err);}};
+  const overlay=document.createElement('div');overlay.className='video-overlay';
+  const info=document.createElement('div');info.className='video-info';
+  const title=document.createElement('h3');title.textContent=v.title||'Untitled video';
+  const creator=document.createElement('div');creator.textContent='@'+(v.creatorName||'Creator');
+  const desc=document.createElement('p');desc.textContent=v.description||'';
+  info.append(title,creator,desc);
+  const actions=document.createElement('div');actions.className='actions';
+  const like=document.createElement('button');like.textContent='♡ Like';like.onclick=()=>toggleLike(v.id,like);
+  const comments=document.createElement('button');comments.textContent='▤ Comments';comments.onclick=()=>openComments(v);
+  const share=document.createElement('button');share.textContent='↗ Share';share.onclick=()=>shareVideo(v);
+  const tag=document.createElement('span');tag.className='pill';tag.textContent='Short';
+  actions.append(like,comments,share,tag);overlay.append(info,actions);card.append(video,overlay);feed.append(card);checkLiked(v.id,like);
+ });
+ if(feedObserver)feedObserver.disconnect();
+ feedObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  const vid=entry.target.querySelector('video');if(!vid)return;
+  if(entry.isIntersecting&&entry.intersectionRatio>=.65){
+   document.querySelectorAll('.video-card video').forEach(other=>{if(other!==vid)other.pause();});
+   vid.play().catch(()=>{});recordView(entry.target.dataset.id);
+   const index=videos.findIndex(v=>v.id===entry.target.dataset.id);
+   if(index>=videos.length-3&&lastDoc)loadFeed(false);
+  }else vid.pause();
+ }),{root:feed,threshold:[0,.65,1]});
+ document.querySelectorAll('.video-card').forEach(c=>feedObserver.observe(c));
+}
+async function checkLiked(id,button){try{const [s,count]=await Promise.all([getDoc(doc(db,'videos',id,'likes',currentUser.uid)),getCountFromServer(collection(db,'videos',id,'likes'))]);button.classList.toggle('liked',s.exists());button.textContent=`${s.exists()?'♥':'♡'} ${count.data().count} ${s.exists()?'Liked':'Like'}`;}catch{button.textContent='♡ Like';}}
+async function toggleLike(id,button){button.disabled=true;try{const ref=doc(db,'videos',id,'likes',currentUser.uid);await runTransaction(db,async tx=>{const s=await tx.get(ref);if(s.exists())tx.delete(ref);else tx.set(ref,{uid:currentUser.uid,createdAt:serverTimestamp()});});await checkLiked(id,button);}catch(e){alert(friendly(e));}finally{button.disabled=false;}}
+async function recordView(id){if(!currentUser)return;try{const ref=doc(db,'videos',id,'views',currentUser.uid);await runTransaction(db,async tx=>{const s=await tx.get(ref);if(!s.exists())tx.set(ref,{uid:currentUser.uid,createdAt:serverTimestamp()});});}catch(e){console.warn('View not recorded',e.code||e.message);}}
+async function shareVideo(v){const url=new URL(location.href);url.hash='video='+encodeURIComponent(v.id);try{if(navigator.share)await navigator.share({title:v.title||'YouKi Shorts',text:v.description||'Watch this short on YouKi Shorts',url:url.href});else{await navigator.clipboard.writeText(url.href);alert('Video link copied.');}}catch(e){if(e.name!=='AbortError')prompt('Copy this video link:',url.href);}}
+function openComments(v){currentCommentVideo=v;$('commentsDialog').showModal();$('commentText').value='';say('commentMsg','');loadComments(v.id);}
+function loadComments(id){if(commentUnsub)commentUnsub();$('commentsList').replaceChildren();say('commentsStatus','Loading comments…');commentUnsub=onSnapshot(query(collection(db,'videos',id,'comments'),orderBy('createdAt','asc'),limit(100)),snap=>{ $('commentsList').replaceChildren();say('commentsStatus',snap.empty?'No comments yet.':`${snap.size} recent comments`);snap.forEach(d=>{const x=d.data(),item=document.createElement('div');item.className='comment';const strong=document.createElement('strong');strong.textContent=x.displayName||'User';const body=document.createElement('div');body.textContent=x.text||'';item.append(strong,body);if(x.uid===currentUser.uid){const del=document.createElement('button');del.textContent='Delete';del.className='secondary';del.onclick=async()=>{if(confirm('Delete this comment?'))try{await deleteDoc(doc(db,'videos',id,'comments',d.id));}catch(e){say('commentMsg',friendly(e),'error');}};item.append(del);} $('commentsList').append(item);});},e=>say('commentsStatus',friendly(e),'error'));}
+$('closeComments').onclick=()=>{$('commentsDialog').close();if(commentUnsub)commentUnsub();commentUnsub=null;};
+$('commentForm').addEventListener('submit',async e=>{e.preventDefault();const text=$('commentText').value.trim();if(!text||!currentCommentVideo)return;try{await addDoc(collection(db,'videos',currentCommentVideo.id,'comments'),{uid:currentUser.uid,displayName:currentUser.displayName||'Creator',text,createdAt:serverTimestamp()});$('commentText').value='';say('commentMsg','Comment posted.','ok');}catch(err){say('commentMsg',friendly(err),'error');}});
+
+$('uploadForm').addEventListener('submit',async e=>{
+ e.preventDefault();if(uploadTask){say('uploadMsg','An upload is already running.');return;}if(!currentUser){say('uploadMsg','Log in before uploading.','error');return;}
+ const file=$('videoFile').files[0],title=$('videoTitle').value.trim(),description=$('videoDescription').value.trim();if(!file||!title)return;
+ if(file.size>MAX_BYTES){say('uploadMsg','File exceeds the 100 MB app limit.','error');return;}
+ if(!['video/mp4','video/webm','video/quicktime'].includes(file.type)&&!(/\.(mp4|webm|mov)$/i.test(file.name))){say('uploadMsg','Choose MP4, WebM or MOV.','error');return;}
+ $('publishBtn').disabled=true;$('uploadProgressWrap').classList.remove('hidden');$('uploadProgress').style.width='0%';$('cancelUpload').disabled=false;say('uploadMsg','Uploading video to Cloudinary…');
+ try{
+  const result=await uploadToCloudinary(file,pct=>{$('uploadProgress').style.width=pct+'%';$('uploadLabel').textContent=`Uploading ${pct}%`;});
+  const url=result.secure_url;
+  if(!url||!url.startsWith('https://res.cloudinary.com/youki/video/upload/'))throw new Error('Unexpected Cloudinary URL. Check Cloud name and unsigned preset.');
+  await addDoc(collection(db,'videos'),{ownerUid:currentUser.uid,creatorName:(currentUser.displayName||'Creator').slice(0,40),title,description,cloudinaryPublicId:result.public_id,downloadURL:url,contentType:file.type||'video/mp4',sizeBytes:Number(result.bytes||file.size),published:true,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});
+  say('uploadMsg','Video uploaded and published.','ok');$('uploadForm').reset();lastDoc=null;videos=[];showPage('home');
+ }catch(err){say('uploadMsg',err?.name==='AbortError'?'Upload cancelled.':'Upload/publish failed: '+(err.message||friendly(err)),'error');}
+ finally{uploadTask=null;$('publishBtn').disabled=false;$('uploadProgressWrap').classList.add('hidden');}
+});
+function uploadToCloudinary(file,onProgress){return new Promise((resolve,reject)=>{const xhr=new XMLHttpRequest();uploadTask=xhr;xhr.open('POST',`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/video/upload`);xhr.responseType='json';xhr.upload.onprogress=e=>{if(e.lengthComputable)onProgress(Math.min(99,Math.round(e.loaded/e.total*100)));};xhr.onload=()=>{const d=xhr.response;if(xhr.status>=200&&xhr.status<300&&d?.secure_url){onProgress(100);resolve(d);}else reject(new Error(d?.error?.message||`Cloudinary upload failed (HTTP ${xhr.status}). Check the unsigned preset.`));};xhr.onerror=()=>reject(new Error('Network error during Cloudinary upload.'));xhr.onabort=()=>{const e=new Error('Upload cancelled.');e.name='AbortError';reject(e);};const f=new FormData();f.append('file',file);f.append('upload_preset',CLOUDINARY_UNSIGNED_PRESET);xhr.send(f);});}
+$('cancelUpload').onclick=()=>{if(uploadTask)uploadTask.abort();};
+
+async function loadProfile(){if(!currentUser)return;$('profileEmail').textContent=currentUser.email||'';try{const s=await getDoc(doc(db,'users',currentUser.uid)),d=s.exists()?s.data():{};$('profileName').value=d.displayName||currentUser.displayName||'';$('profileBio').value=d.bio||'';const snap=await getDocs(query(collection(db,'videos'),where('ownerUid','==',currentUser.uid),orderBy('createdAt','desc'),limit(30)));$('profileStats').textContent=`${snap.size} published video(s) shown`;const grid=$('myVideos');grid.replaceChildren();if(snap.empty){grid.innerHTML='<p class="muted">You have not published videos yet.</p>';return;}snap.forEach(ds=>{const v=ds.data(),a=document.createElement('article'),vid=document.createElement('video'),h=document.createElement('p');vid.src=v.downloadURL;vid.preload='metadata';vid.controls=true;vid.playsInline=true;h.textContent=v.title;a.append(vid,h);grid.append(a);});}catch(e){say('profileMsg',friendly(e),'error');}}
+$('profileForm').addEventListener('submit',async e=>{e.preventDefault();const displayName=$('profileName').value.trim(),bio=$('profileBio').value.trim();if(!displayName){say('profileMsg','Display name is required.','error');return;}try{await updateProfile(currentUser,{displayName});await setDoc(doc(db,'users',currentUser.uid),{uid:currentUser.uid,displayName,bio,photoURL:currentUser.photoURL||'',updatedAt:serverTimestamp()},{merge:true});say('profileMsg','Profile saved.','ok');$('accountStatus').textContent=displayName;}catch(err){say('profileMsg',friendly(err),'error');}});
+$('searchForm').addEventListener('submit',e=>{e.preventDefault();const term=$('searchInput').value.trim().toLocaleLowerCase(),found=videos.filter(v=>(v.title||'').toLocaleLowerCase().includes(term)||(v.creatorName||'').toLocaleLowerCase().includes(term)),grid=$('searchResults');grid.replaceChildren();$('searchStatus').textContent=found.length?`${found.length} result(s) in loaded videos.`:'No matches in loaded videos.';found.forEach(v=>{const a=document.createElement('article'),vid=document.createElement('video'),h=document.createElement('p');vid.src=v.downloadURL;vid.preload='metadata';vid.controls=true;vid.playsInline=true;h.textContent=v.title;a.append(vid,h);grid.append(a);});});
+onAuthStateChanged(auth,user=>authView(user));
+</script>
+</body>
+</html>
